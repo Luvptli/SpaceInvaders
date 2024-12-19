@@ -29,17 +29,18 @@ public class CanvasBehaviour : MonoBehaviour
     {
         canvasMenu.SetActive(false);
         canvasOptions.SetActive(false);
-        LeanTween.scale(canvasMenu, Vector3.one * 0.9f, 0.5f).setEase(animCurve).setOnComplete(() =>
-        {
-            LeanTween.scale(canvasMenu, Vector3.one * 1f, 0.5f);
-        });
         estaJugando =true;
     }
 
     public void OptionsButton()
     {
-        canvasOptions.SetActive(true);
         estaJugando = false;
+        LeanTween.moveLocalX(canvasMenu, -1920f, 1f).setOnComplete(() =>
+        {
+            canvasMenu.SetActive(false);
+        });
+        canvasOptions.SetActive(true);
+        LeanTween.moveLocalX(canvasOptions, 0, 1f);
     }
 
     public void ExitButton()
