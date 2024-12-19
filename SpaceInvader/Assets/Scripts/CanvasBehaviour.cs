@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class CanvasBehaviour : MonoBehaviour
@@ -10,6 +11,9 @@ public class CanvasBehaviour : MonoBehaviour
     GameObject canvasOptions;
     [SerializeField]
     LeanTweenType animCurve;
+
+    [SerializeField]
+    GameObject canvasPause;
 
     bool estaJugando;
     void Start()
@@ -22,14 +26,17 @@ public class CanvasBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (estaJugando && Input.GetKeyDown(KeyCode.Escape))
+        {
+            canvasPause.SetActive(true);
+        }
     }
 
     public void StartButton()
     {
         canvasMenu.SetActive(false);
         canvasOptions.SetActive(false);
-        estaJugando =true;
+        estaJugando = true;
     }
 
     public void OptionsButton()
@@ -46,5 +53,17 @@ public class CanvasBehaviour : MonoBehaviour
     public void ExitButton()
     {
         estaJugando = false;
+    }
+
+    public void ReturnButton()
+    {
+        estaJugando = false;
+        LeanTween.moveLocalX(canvasOptions, 1920, 1f).setOnComplete(() =>
+        {
+            canvasOptions.SetActive(false);
+        });
+        canvasMenu.SetActive(true);
+
+        LeanTween.moveLocalX(canvasMenu, 7.9332f, 1f);
     }
 }
