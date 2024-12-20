@@ -19,12 +19,17 @@ public class CanvasBehaviour : MonoBehaviour
     [SerializeField]
     GameObject canvasGame;
 
-   /* [SerializeField]
+    [SerializeField]
     Image imageMuteO;
     [SerializeField]
-    Image imageMuteG;*/
+    Image imageMuteG;
 
-    bool estaJugando;
+    [SerializeField]
+    float valueVolume;
+    [SerializeField]
+    Slider slideVolume;
+
+    public bool estaJugando;
     void Start()
     {
         canvasMenu.SetActive(true);
@@ -34,20 +39,26 @@ public class CanvasBehaviour : MonoBehaviour
         canvasPause.SetActive(false);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        slideVolume.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
+        AudioListener.volume = slideVolume.value;
+        Mute();
         if (estaJugando && Input.GetKeyDown(KeyCode.Escape))
         {
             canvasPause.SetActive(true);
             canvasGame.SetActive(false);
+            estaJugando = false;
         }
-       // Mute();
+        else if (estaJugando == false && canvasPause == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+           ReturnToGame();
+        }
     }
 
     public void StartButton()
     {
-        Debug.Log("xd");
         canvasMenu.SetActive(false);
         canvasOptions.SetActive(false);
         estaJugando = true;
@@ -64,9 +75,19 @@ public class CanvasBehaviour : MonoBehaviour
         });
         canvasOptions.SetActive(true);
         LeanTween.moveLocalX(canvasOptions, 0, 1f);
+        canvasPause.SetActive(false);
     }
 
-    /*public void Mute()
+    public void VolumenSlide(float valor)
+    {
+        estaJugando = false;
+        valueVolume = valor;
+        PlayerPrefs.SetFloat("volumenAudio", valueVolume);
+        AudioListener.volume = valueVolume;
+        Mute();
+    }
+
+    public void Mute()
     {
         if (valueVolume == 0)
         {
@@ -78,7 +99,7 @@ public class CanvasBehaviour : MonoBehaviour
             imageMuteO.enabled = false;
             imageMuteG.enabled = false;
         }
-    }*/
+    }
 
     public void ExitButton()
     {
@@ -96,4 +117,11 @@ public class CanvasBehaviour : MonoBehaviour
 
         LeanTween.moveLocalX(canvasMenu, 7.9332f, 1f);
     }
+    public void ReturnToGame()
+    {
+        canvasPause.SetActive(false);
+        canvasGame.SetActive(true);
+        estaJugando = true;
+    }
+    //como distorisonar la pantalla, nombre, no me sale volume
 }
