@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,31 +13,69 @@ public class CanvasBehaviour : MonoBehaviour
     GameObject canvasOptions;
     [SerializeField]
     LeanTweenType animCurve;
-
     [SerializeField]
     GameObject canvasPause;
-
     [SerializeField]
     GameObject canvasGame;
+    [SerializeField]
+    GameObject canvasSelection;
 
     [SerializeField]
-    Image imageMuteO;
-    [SerializeField]
-    Image imageMuteG;
+    PlayerBehaviour playerBehaviour;
 
     [SerializeField]
     float valueVolume;
     [SerializeField]
     Slider slideVolume;
 
+    [SerializeField]
+    Image imageMuteO;
+    [SerializeField]
+    Image imageMuteG;
+
+    /*[SerializeField]
+    Slider slideBrillo;
+    [SerializeField]
+    float valueBrillo;
+    [SerializeField]
+    Image imagenBrillo;*/
+
+    [SerializeField]
+    Toggle pantallaCompleta;
+
+    [SerializeField]
+    TMP_Dropdown resolutionDropdown;
+    Resolution[] resoluciones;
+
     public bool estaJugando;
     void Start()
     {
+        estaJugando = false;
         canvasMenu.SetActive(true);
         canvasOptions.SetActive(false);
-        estaJugando = false;
         canvasGame.SetActive(false);
         canvasPause.SetActive(false);
+        canvasSelection.SetActive(false);
+
+        playerBehaviour.enabled = false;
+
+        slideVolume.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
+        AudioListener.volume = slideVolume.value;
+        Mute();
+
+        /*slideBrillo.value = PlayerPrefs.GetFloat("brillo", 0.5f);
+        imagenBrillo.color = new Color(imagenBrillo.color.r, imagenBrillo.color.g, imagenBrillo.color.b, slideBrillo.value);*/
+
+        if (Screen.fullScreen)
+        {
+            pantallaCompleta.isOn = true;
+        }
+        else
+        {
+            pantallaCompleta.isOn = false;
+        }
+
+        RevisarResolucion();
     }
 
     
@@ -45,24 +84,16 @@ public class CanvasBehaviour : MonoBehaviour
         slideVolume.value = PlayerPrefs.GetFloat("volumenAudio", 0.5f);
         AudioListener.volume = slideVolume.value;
         Mute();
-        if (estaJugando && Input.GetKeyDown(KeyCode.Escape))
-        {
-            canvasPause.SetActive(true);
-            canvasGame.SetActive(false);
-            estaJugando = false;
-        }
-        else if (estaJugando == false && canvasPause == true && Input.GetKeyDown(KeyCode.Escape))
-        {
-           ReturnToGame();
-        }
+        PauseGame();
     }
 
     public void StartButton()
     {
         canvasMenu.SetActive(false);
         canvasOptions.SetActive(false);
-        estaJugando = true;
-        canvasGame.SetActive(true);
+        estaJugando = false;
+        canvasSelection.SetActive(true);
+        playerBehaviour.enabled = true;
     }
 
     public void OptionsButton()
@@ -101,9 +132,44 @@ public class CanvasBehaviour : MonoBehaviour
         }
     }
 
-    public void ExitButton()
+    /*public void BrilloSlide(float valor)
     {
-        estaJugando = false;
+        valueBrillo = valor;
+        PlayerPrefs.SetFloat("brillo", valueBrillo);
+        imagenBrillo.color = new Color(imagenBrillo.color.r, imagenBrillo.color.g, imagenBrillo.color.b, slideBrillo.value);
+    }*/
+
+        public void RevisarResolucion()
+    {
+        resoluciones = Screen.resolutions;
+        resolutionDropdown.ClearOptions();
+        List<string> opciones = new List<string>();
+        int resolucionActual = 0;
+
+        for (int i = 0; i < resoluciones.Length; i++)
+        {
+            string opcion = resoluciones[i].width + "x" + resoluciones[i].height;
+            opciones.Add(opcion);
+
+            if (Screen.fullScreen && resoluciones[i].width == Screen.currentResolution.width && resoluciones[i].height == Screen.currentResolution.height)
+            {
+                resolucionActual = i;
+            }
+        }
+        resolutionDropdown.AddOptions(opciones);
+        resolutionDropdown.value = resolucionActual;
+        resolutionDropdown.RefreshShownValue();
+    }
+
+    public void CambiarResolucion(int indiceResolucion)
+    {
+        Resolution resolucion = resoluciones[indiceResolucion];
+        Screen.SetResolution(resolucion.width, resolucion.height, Screen.fullScreen);
+    }
+
+    public void ActivarPantallaCompleta(bool pantallaCompleta)
+    {
+        Screen.fullScreen = pantallaCompleta;
     }
 
     public void ReturnButton()
@@ -114,8 +180,20 @@ public class CanvasBehaviour : MonoBehaviour
             canvasOptions.SetActive(false);
         });
         canvasMenu.SetActive(true);
-
         LeanTween.moveLocalX(canvasMenu, 7.9332f, 1f);
+    }
+    public void PauseGame()
+    {
+        if (estaJugando && Input.GetKeyDown(KeyCode.Escape))
+        {
+            canvasPause.SetActive(true);
+            canvasGame.SetActive(false);
+            estaJugando = false;
+        }
+        else if (estaJugando == false && canvasPause == true && Input.GetKeyDown(KeyCode.Escape))
+        {
+            ReturnToGame();
+        }
     }
     public void ReturnToGame()
     {
@@ -123,5 +201,11 @@ public class CanvasBehaviour : MonoBehaviour
         canvasGame.SetActive(true);
         estaJugando = true;
     }
-    //como distorisonar la pantalla, nombre, no me sale volume
+   
+    public void ExitButton()
+    {
+        estaJugando = false;
+        Debug.Log("Salir");
+        Application.Quit();
+    }
 }
