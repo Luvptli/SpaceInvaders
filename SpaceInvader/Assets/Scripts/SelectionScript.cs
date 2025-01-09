@@ -14,15 +14,31 @@ public class SelectionScript : MonoBehaviour
     [SerializeField]
     GameObject canvasSelecion;
 
-    private void OnTriggerEnter(Collider other)
+    [SerializeField]
+    GameObject imageGame;
+
+    [SerializeField]
+    GameObject enemysManager;
+
+    [SerializeField]
+    GameObject canvasGame;
+
+    private void Start()
     {
-        if (other.tag == "Bullet")
+        imageGame.SetActive(false);
+    }
+
+    private void OnTriggerEnter (Collider other)
+    {
+        if (other.CompareTag ("Bullet"))
         {
-            Debug.Log("eh");
             gameSelection.SetActive(false);
             canvasSelecion.SetActive(false);
+            imageGame.SetActive(true);
+            enemysManager.SetActive(true);
+            canvasGame.SetActive(true);
             Destroy(other.gameObject);
-            Instantiate(naveElegida, Vector3.one, Quaternion.identity);
+            Instantiate(naveElegida);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,12 +23,16 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField]
     public GameObject bullet;
+    [SerializeField]
+    GameObject canvasGameOver;
 
     [SerializeField]
     public float shootTime;
 
     [SerializeField]
     public Vector3 offset = new Vector3(0, 1, 0);
+
+    public CanvasBehaviour canvasBehaviour;
 
     void Start()
     {
@@ -60,9 +65,12 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "BulletEnemy")
+        if (other.tag == "Bullet2")
         {
             Destroy(this.gameObject);
+            CanvasBehaviour.Instance.ShowGameOver();
+            CanvasBehaviour.Instance.StopGame();
+
         }
     }
 }

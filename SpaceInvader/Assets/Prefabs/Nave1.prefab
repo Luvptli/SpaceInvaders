@@ -317,14 +317,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementX: 0
-  playerSpeed: 7
-  minX: -70
-  maxX: -10
+  playerSpeed: 15
+  minX: -92
+  maxX: -33
   posInicial: {x: 0, y: 0, z: 0}
   bullet: {fileID: 2391711428022788936, guid: 7e9e62208e7833f4a9d1323e5d43f783, type: 3}
   shootTime: 0
   offset: {x: -1, y: 3.5, z: 23.2}
-  life: 0
 --- !u!65 &211621619670294285
 BoxCollider:
   m_ObjectHideFlags: 0

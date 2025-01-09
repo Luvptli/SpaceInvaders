@@ -19,9 +19,19 @@ public class CanvasBehaviour : MonoBehaviour
     GameObject canvasGame;
     [SerializeField]
     GameObject canvasSelection;
+    [SerializeField]
+    GameObject canvasSelect;
+
+    public static CanvasBehaviour Instance;
+    [SerializeField]
+    GameObject canvasGameOver;
+    [SerializeField]
+    GameObject canvasWin;
 
     [SerializeField]
     PlayerBehaviour playerBehaviour;
+    [SerializeField]
+    EnemyMovement enemysManager;
 
     [SerializeField]
     float valueVolume;
@@ -48,14 +58,31 @@ public class CanvasBehaviour : MonoBehaviour
     Resolution[] resoluciones;
 
     public bool estaJugando;
+
+    private void Awake()
+    {
+        // Asegurarse de que solo exista una instancia de GameOverController
+        if (Instance == null)
+        {
+            Instance = this; // Asignar la instancia
+        }
+        else
+        {
+            Destroy(gameObject); // Si ya existe, destruir este objeto
+        }
+    }
     void Start()
     {
         estaJugando = false;
         canvasMenu.SetActive(true);
         canvasOptions.SetActive(false);
-        canvasGame.SetActive(false);
+        canvasSelect.SetActive(false);
         canvasPause.SetActive(false);
         canvasSelection.SetActive(false);
+        canvasWin.SetActive(false);
+        canvasGameOver.SetActive(false);
+        enemysManager.enabled = false;
+       // enemysManager.ResetEnemies();
 
         playerBehaviour.enabled = false;
 
@@ -91,9 +118,13 @@ public class CanvasBehaviour : MonoBehaviour
     {
         canvasMenu.SetActive(false);
         canvasOptions.SetActive(false);
+        canvasGameOver.SetActive(false);
+        canvasSelection.SetActive(true);
+        canvasSelect.SetActive(true);
         estaJugando = false;
         canvasSelection.SetActive(true);
         playerBehaviour.enabled = true;
+        enemysManager.enabled=true;
     }
 
     public void OptionsButton()
@@ -107,6 +138,7 @@ public class CanvasBehaviour : MonoBehaviour
         canvasOptions.SetActive(true);
         LeanTween.moveLocalX(canvasOptions, 0, 1f);
         canvasPause.SetActive(false);
+        canvasSelection.SetActive(false);
     }
 
     public void VolumenSlide(float valor)
@@ -182,24 +214,38 @@ public class CanvasBehaviour : MonoBehaviour
         canvasMenu.SetActive(true);
         LeanTween.moveLocalX(canvasMenu, 7.9332f, 1f);
     }
+
+    public void ShowGameOver()
+    {
+        // Activa el canvas de Game Over
+        canvasGameOver.SetActive(true);
+    }
     public void PauseGame()
     {
         if (estaJugando && Input.GetKeyDown(KeyCode.Escape))
         {
             canvasPause.SetActive(true);
             canvasGame.SetActive(false);
+            canvasSelection.SetActive(false);
             estaJugando = false;
+            StopGame();
         }
         else if (estaJugando == false && canvasPause == true && Input.GetKeyDown(KeyCode.Escape))
         {
             ReturnToGame();
         }
     }
+    public void StopGame()
+    {
+        playerBehaviour.enabled = false;
+        enemysManager.enabled = false;
+    }
     public void ReturnToGame()
     {
         canvasPause.SetActive(false);
         canvasGame.SetActive(true);
         estaJugando = true;
+        playerBehaviour.enabled = true;
     }
    
     public void ExitButton()

@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class FuerteBehaviour : MonoBehaviour
 {
     [SerializeField]
-    public float health = 0f;
+    public float health = 4f;
     [SerializeField]
     public float bulletDamage = 1f;
-    
-    private void OnTriggerEnter (Collider other)
+    void Start()
     {
-        if (other.tag == "Bullet")
-        { 
+
+    }
+
+    void Update()
+    {
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Bullet2" || other.tag == "Bullet")
+        {
             if (health <= 0f)
             {
                 Destroy(this.gameObject);
