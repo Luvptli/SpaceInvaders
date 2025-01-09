@@ -641,8 +641,12 @@ MonoBehaviour:
   maxX: -56
   posInicial: {x: 0, y: 0, z: 0}
   bullet: {fileID: 2391711428022788936, guid: 7e589e6a2f37aea47900fb7e746b965e, type: 3}
+  bulletSpecial: {fileID: 2391711428022788936, guid: 89cf913d8f8ed2b45a7f911d88da8392, type: 3}
+  canvasGameOver: {fileID: 0}
   shootTime: 0
+  shootTimeSpecial: 0
   offset: {x: -0.5, y: 5, z: 45.8}
+  canvasBehaviour: {fileID: 0}
 --- !u!65 &7566224017781067972
 BoxCollider:
   m_ObjectHideFlags: 0

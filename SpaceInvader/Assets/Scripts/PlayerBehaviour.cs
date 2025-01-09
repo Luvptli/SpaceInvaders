@@ -24,10 +24,15 @@ public class PlayerBehaviour : MonoBehaviour
     [SerializeField]
     public GameObject bullet;
     [SerializeField]
+    public GameObject bulletSpecial;
+
+    [SerializeField]
     GameObject canvasGameOver;
 
     [SerializeField]
     public float shootTime;
+    [SerializeField]
+    public float shootTimeSpecial;
 
     [SerializeField]
     public Vector3 offset = new Vector3(0, 1, 0);
@@ -38,11 +43,13 @@ public class PlayerBehaviour : MonoBehaviour
     {
         posInicial = transform.position;
         shootTime = 1f;
+        shootTimeSpecial = 5f;
     }
 
     void Update()
     {
         shootTime += Time.deltaTime;
+        shootTimeSpecial += Time.deltaTime;
         movementX = Input.GetAxisRaw("Horizontal");
         float newPosX = transform.position.x + movementX * playerSpeed * Time.deltaTime;
         newPosX = Mathf.Clamp (newPosX, minX, maxX);
@@ -50,6 +57,10 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
         {
             Bullet();
+        }
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetMouseButtonDown(1))
+        {
+            BulletSpecial();
         }
     }
 
@@ -62,6 +73,16 @@ public class PlayerBehaviour : MonoBehaviour
             shootTime = 0f;
         }
     }
+    void BulletSpecial()
+    {
+        if (shootTimeSpecial >= 5)
+        {
+            Vector3 bulletPosition = transform.position + transform.TransformDirection(offset);
+            Instantiate(bulletSpecial, bulletPosition, Quaternion.identity);
+            shootTimeSpecial = 0f;
+        }
+    }
+        
 
     private void OnTriggerEnter(Collider other)
     {

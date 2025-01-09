@@ -40,18 +40,6 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        if (prefabs.Count < 4)
-        {
-            Debug.LogError("Por favor, añade al menos 4 prefabs a la lista en el Inspector.");
-            return;
-        }
-
-        if (rowXOffsets.Count < totalRow || rowZOffsets.Count < totalRow)
-        {
-            Debug.LogError("Por favor, asegúrate de que las listas de desplazamientos X y Z tienen al menos el número de filas.");
-            return;
-        }
-
         disparoProbabilidad = new List<List<float>>(); // Inicializamos la lista de probabilidades
 
         // Crear la matriz de enemigos y la probabilidad de disparo

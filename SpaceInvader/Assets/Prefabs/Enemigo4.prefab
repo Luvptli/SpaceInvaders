@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemigo4
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8a020c4eccedc4149a1b924c0ec249ff, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: -1589879537468421222, guid: 8a020c4eccedc4149a1b924c0ec249ff, type: 3}
@@ -174,3 +178,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 3
   bulletDamage: 1
+  playerBehaviour: {fileID: 0}
