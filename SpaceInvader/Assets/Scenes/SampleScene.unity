@@ -3845,6 +3845,7 @@ RectTransform:
   - {fileID: 1276448573}
   - {fileID: 152495842}
   - {fileID: 851421355}
+  - {fileID: 1950219710}
   m_Father: {fileID: 1654857535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5964,7 +5965,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1130105663
 Transform:
   m_ObjectHideFlags: 0
@@ -7330,8 +7331,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379542607}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000019073486, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8570,7 +8571,6 @@ RectTransform:
   - {fileID: 966084309}
   - {fileID: 1999000020}
   - {fileID: 806691175}
-  - {fileID: 1950219710}
   - {fileID: 601324489}
   - {fileID: 753367560}
   m_Father: {fileID: 0}
@@ -9711,7 +9711,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1950219709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9720,7 +9720,7 @@ RectTransform:
   - {fileID: 464529648}
   - {fileID: 1865120969}
   - {fileID: 1099637446}
-  m_Father: {fileID: 1654857535}
+  m_Father: {fileID: 806691175}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10308,12 +10308,12 @@ MonoBehaviour:
   spaceBetweenElementsY: 5
   prefabs:
   - {fileID: 2633682829772021100, guid: 4249cd9f812810d48a32c65148b62c28, type: 3}
-  - {fileID: 5860447658282863027, guid: 9ec17554e885c4247847e815b123d708, type: 3}
+  - {fileID: 4253290806629508800, guid: 0531cd14d949c17499ac5030cec0ddd1, type: 3}
   - {fileID: 4784143051283112481, guid: b17c401b728d36445a6138491cc74f57, type: 3}
   - {fileID: 1913795711499214373, guid: 7643662647ef6384bba7cc7ff6034374, type: 3}
   rowXOffsets:
   - -21.5
-  - -16.5
+  - -14
   - -7.25
   - 0
   rowZOffsets:
@@ -11293,5 +11293,5 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 1654857535}
   - {fileID: 1212201121}
-  - {fileID: 1379542610}
   - {fileID: 2038080609}
+  - {fileID: 1379542610}
