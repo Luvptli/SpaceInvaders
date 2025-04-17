@@ -8,6 +8,7 @@ TagManager:
   - Bullet2
   - Bullet3
   - Enemy
+  - Fuert
   layers:
   - Default
   - TransparentFX

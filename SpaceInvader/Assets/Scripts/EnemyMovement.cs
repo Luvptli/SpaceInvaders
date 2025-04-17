@@ -32,6 +32,9 @@ public class EnemyMovement : MonoBehaviour
     float fireChance = 0.1f; // Probabilidad de que los enemigos disparen
 
     [SerializeField]
+    float bulletTime = 5f;
+
+    [SerializeField]
     GameObject bulletPrefab; // Prefab de la bala (así podrás asignar el prefab de la bala en el Inspector)
 
     List<List<GameObject>> matrizObjetos = new List<List<GameObject>>(); // Lista de enemigos
@@ -76,6 +79,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
+        bulletTime += Time.deltaTime;
         // Mover todos los enemigos en la dirección global
         for (int i = 0; i < totalColumns; i++)
         {
@@ -148,8 +152,8 @@ public class EnemyMovement : MonoBehaviour
         GameObject bullet = Instantiate(bulletPrefab, enemy.transform.position, Quaternion.identity);
 
         // Ajustar la dirección de la bala, normalmente iría hacia abajo, dependiendo de tu diseño
-        bullet.GetComponent<Rigidbody>().velocity = new Vector3(0, -1, 0); // Aquí es donde añades la velocidad
-        Debug.Log(enemy.name + " dispara");
+        bullet.GetComponent<Rigidbody>().velocity = new Vector3(0, -5, 0);
+        Destroy(bullet, bulletTime);// Aquí es donde añades la velocidad
     }
 
     // Función para destruir un enemigo
@@ -168,5 +172,4 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-   
 }

@@ -4,6 +4,8 @@ using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 public class CanvasBehaviour : MonoBehaviour
 {
@@ -163,14 +165,6 @@ public class CanvasBehaviour : MonoBehaviour
             imageMuteG.enabled = false;
         }
     }
-
-    /*public void BrilloSlide(float valor)
-    {
-        valueBrillo = valor;
-        PlayerPrefs.SetFloat("brillo", valueBrillo);
-        imagenBrillo.color = new Color(imagenBrillo.color.r, imagenBrillo.color.g, imagenBrillo.color.b, slideBrillo.value);
-    }*/
-
         public void RevisarResolucion()
     {
         resoluciones = Screen.resolutions;
@@ -228,26 +222,26 @@ public class CanvasBehaviour : MonoBehaviour
             canvasGame.SetActive(false);
             canvasSelection.SetActive(false);
             estaJugando = false;
-            StopGame();
+            Time.timeScale = 0f;
         }
         else if (estaJugando == false && canvasPause == true && Input.GetKeyDown(KeyCode.Escape))
         {
             ReturnToGame();
         }
     }
-    public void StopGame()
-    {
-        playerBehaviour.enabled = false;
-        enemysManager.enabled = false;
-    }
     public void ReturnToGame()
     {
         canvasPause.SetActive(false);
         canvasGame.SetActive(true);
         estaJugando = true;
-        playerBehaviour.enabled = true;
+        Time.timeScale = 1f;
     }
-   
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     public void ExitButton()
     {
         estaJugando = false;

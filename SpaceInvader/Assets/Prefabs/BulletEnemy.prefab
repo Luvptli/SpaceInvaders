@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1404795064076825774}
   - component: {fileID: 6957987977641310966}
   - component: {fileID: 4254185374252451013}
-  - component: {fileID: 4516162031421072909}
   - component: {fileID: 2491379680178216456}
   m_Layer: 0
   m_Name: BulletEnemy
@@ -107,20 +106,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4516162031421072909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2391711428022788936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a852c108524fc4880f11a8516b41ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpeed: -10
-  bulletTime: 3
 --- !u!54 &2491379680178216456
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -143,7 +128,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

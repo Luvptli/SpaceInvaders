@@ -8,7 +8,7 @@ public class BulletBehaviour : MonoBehaviour
     [SerializeField]
     float bulletSpeed = 10f;
     [SerializeField]
-    public float bulletTime = 5f;
+    public float bulletTime = 20f;
     [SerializeField]
     public float specialBulletTime = 1f;
 

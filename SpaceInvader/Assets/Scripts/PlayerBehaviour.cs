@@ -90,8 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Destroy(this.gameObject);
             CanvasBehaviour.Instance.ShowGameOver();
-            CanvasBehaviour.Instance.StopGame();
-
+            Time.timeScale = 0f;
         }
     }
 }

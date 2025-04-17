@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fuerte
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cad1626d9bc90104c9d5266199eb0b99, type: 3}
+      propertyPath: m_TagString
+      value: Fuert
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cad1626d9bc90104c9d5266199eb0b99, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8974644162391800778}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cad1626d9bc90104c9d5266199eb0b99, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6134159884889788923}
   m_SourcePrefab: {fileID: 100100000, guid: cad1626d9bc90104c9d5266199eb0b99, type: 3}
 --- !u!1 &1258382972620309641 stripped
 GameObject:
@@ -96,9 +103,23 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.013755342, y: 0.0058951476, z: 0.013755342}
   m_Center: {x: -0.000000045401976, y: 0.0028104943, z: 0.000010554912}
+--- !u!114 &6134159884889788923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258382972620309641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb21c5bc00c002469beeb3b2d627256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 4
+  bulletDamage: 1
