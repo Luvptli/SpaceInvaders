@@ -22758,7 +22758,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860447658282863027}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: b2585879bd50dc042b59ec3ae4c99b09, type: 2}
   m_CullingMode: 0
@@ -22826,13 +22826,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5860447658282863027}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be643f6ced5e1bc4c923bf8e43b8669e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 2
   bulletDamage: 1
+  specialBulletDestructionTime: 1
 --- !u!1 &5868505706235619273
 GameObject:
   m_ObjectHideFlags: 0

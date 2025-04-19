@@ -26,7 +26,7 @@ public class EnemyBehaviour : MonoBehaviour
         { 
             if (health <= 0f)
             {
-                Destroy(this.gameObject);
+                gameObject.SetActive(false);
             }
             if (health >= 0f)
             {
@@ -40,7 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
             {
                 if (specialBulletDestructionTime >= 0.1f)
                 {
-                    Destroy(this.gameObject);
+                    gameObject.SetActive(false);
                     specialBulletDestructionTime = 0f;
                 }
             }

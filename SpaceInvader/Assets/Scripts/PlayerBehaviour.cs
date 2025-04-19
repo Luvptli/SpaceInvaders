@@ -89,7 +89,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.tag == "Bullet2")
         {
             Destroy(this.gameObject);
-            CanvasBehaviour.Instance.ShowGameOver();
+            CanvasBehaviour.instance.ShowGameOver();
             Time.timeScale = 0f;
         }
     }

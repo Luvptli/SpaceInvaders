@@ -24,7 +24,7 @@ public class CanvasBehaviour : MonoBehaviour
     [SerializeField]
     GameObject canvasSelect;
 
-    public static CanvasBehaviour Instance;
+    public static CanvasBehaviour instance;
     [SerializeField]
     GameObject canvasGameOver;
     [SerializeField]
@@ -64,13 +64,13 @@ public class CanvasBehaviour : MonoBehaviour
     private void Awake()
     {
         // Asegurarse de que solo exista una instancia de GameOverController
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this; // Asignar la instancia
+            instance = this; // Asignar la instancia
         }
         else
         {
-            Destroy(gameObject); // Si ya existe, destruir este objeto
+            Destroy(this); // Si ya existe, destruir este objeto
         }
     }
     void Start()
@@ -83,7 +83,8 @@ public class CanvasBehaviour : MonoBehaviour
         canvasSelection.SetActive(false);
         canvasWin.SetActive(false);
         canvasGameOver.SetActive(false);
-        enemysManager.enabled = false;
+        Time.timeScale = 1f;
+        //enemysManager.enabled = false;
        // enemysManager.ResetEnemies();
 
         playerBehaviour.enabled = false;
@@ -126,7 +127,7 @@ public class CanvasBehaviour : MonoBehaviour
         estaJugando = false;
         canvasSelection.SetActive(true);
         playerBehaviour.enabled = true;
-        enemysManager.enabled=true;
+        //enemysManager.enabled=true;
     }
 
     public void OptionsButton()
@@ -211,8 +212,14 @@ public class CanvasBehaviour : MonoBehaviour
 
     public void ShowGameOver()
     {
-        // Activa el canvas de Game Over
+        Time.timeScale = 0f;
         canvasGameOver.SetActive(true);
+    }
+
+    public void ShowWinGame()
+    {
+        Time.timeScale = 0f;
+        canvasWin.SetActive(true);
     }
     public void PauseGame()
     {
